@@ -116,7 +116,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -335,7 +335,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1527514103}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!1 &73101348
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +375,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -631,7 +631,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -694,7 +694,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -875,7 +875,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1527514103}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!4 &392814583 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010472005210, guid: 6293d0fd55185394c8793e2629927f8d,
@@ -986,7 +986,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1062,7 +1062,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1144,46 +1144,6 @@ Prefab:
     - target: {fileID: 4000010472005210, guid: 6293d0fd55185394c8793e2629927f8d, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000010563428516, guid: 6293d0fd55185394c8793e2629927f8d,
-        type: 2}
-      propertyPath: m_RenderMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000011369626442, guid: 6293d0fd55185394c8793e2629927f8d,
-        type: 2}
-      propertyPath: m_RenderMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000013964626564, guid: 6293d0fd55185394c8793e2629927f8d,
-        type: 2}
-      propertyPath: m_RenderMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000011339096754, guid: 6293d0fd55185394c8793e2629927f8d,
-        type: 2}
-      propertyPath: m_RenderMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000010563428516, guid: 6293d0fd55185394c8793e2629927f8d,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 1.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000011369626442, guid: 6293d0fd55185394c8793e2629927f8d,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 1.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000013964626564, guid: 6293d0fd55185394c8793e2629927f8d,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 1.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000011339096754, guid: 6293d0fd55185394c8793e2629927f8d,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 1.09
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6293d0fd55185394c8793e2629927f8d, type: 2}
@@ -1306,7 +1266,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1369,7 +1329,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1471,7 +1431,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1527514103}
-  m_RootOrder: 1
+  m_RootOrder: 3
 --- !u!1 &1178949059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1511,7 +1471,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1732,7 +1692,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1793,7 +1753,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 83a8ea92913740449a4ad6c6c19c7d92, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 83a8ea92913740449a4ad6c6c19c7d92, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -1942,7 +1902,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_Children: []
   m_Father: {fileID: 1527514103}
-  m_RootOrder: 3
+  m_RootOrder: 5
 --- !u!1 &1433465793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,7 +1929,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2036,7 +1996,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_Children: []
   m_Father: {fileID: 1527514103}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!23 &1449137021
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2111,14 +2071,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 650229754}
+  - {fileID: 149342139}
   - {fileID: 64368582}
   - {fileID: 1152596939}
   - {fileID: 370097216}
   - {fileID: 1421893617}
   - {fileID: 1817023486}
   - {fileID: 1449137020}
-  - {fileID: 650229754}
-  - {fileID: 149342139}
   - {fileID: 313006129}
   - {fileID: 1931975209}
   - {fileID: 1198299711}
@@ -2170,7 +2130,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2231,7 +2191,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 29e497487ae706f4a90f81cac1f10ccf, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 29e497487ae706f4a90f81cac1f10ccf, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2273,15 +2233,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000014283610642, guid: d2a43f9493f79c54aa2ca3066c1aebbb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 7.04
+      value: -3.95
       objectReference: {fileID: 0}
     - target: {fileID: 4000014283610642, guid: d2a43f9493f79c54aa2ca3066c1aebbb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.487
+      value: -0.19
       objectReference: {fileID: 0}
     - target: {fileID: 4000014283610642, guid: d2a43f9493f79c54aa2ca3066c1aebbb, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 4.93
+      value: 15.25
       objectReference: {fileID: 0}
     - target: {fileID: 4000014283610642, guid: d2a43f9493f79c54aa2ca3066c1aebbb, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2303,85 +2263,25 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 108000011635129930, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
+    - target: {fileID: 114000013644469532, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
         type: 2}
-      propertyPath: m_BounceIntensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000011843555872, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: m_BounceIntensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000010767564572, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: m_BounceIntensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000013301866872, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: m_BounceIntensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000011635129930, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: m_Shadows.m_Type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000011843555872, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: m_Shadows.m_Type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000010767564572, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: m_Shadows.m_Type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000013301866872, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: m_Shadows.m_Type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000011635129930, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: m_RenderMode
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 108000011843555872, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
+    - target: {fileID: 114000013644469532, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
         type: 2}
-      propertyPath: m_RenderMode
-      value: 1
+      propertyPath: rayColor.r
+      value: 0.21799307
       objectReference: {fileID: 0}
-    - target: {fileID: 108000010767564572, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
+    - target: {fileID: 114000013644469532, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
         type: 2}
-      propertyPath: m_RenderMode
-      value: 1
+      propertyPath: rayColor.g
+      value: 0.9264706
       objectReference: {fileID: 0}
-    - target: {fileID: 108000013301866872, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
+    - target: {fileID: 114000013644469532, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
         type: 2}
-      propertyPath: m_RenderMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000011635129930, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 1.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000011843555872, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 1.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000010767564572, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 1.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000013301866872, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 1.55
+      propertyPath: rayColor.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2a43f9493f79c54aa2ca3066c1aebbb, type: 2}
@@ -2495,7 +2395,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_Children: []
   m_Father: {fileID: 1527514103}
-  m_RootOrder: 4
+  m_RootOrder: 6
 --- !u!23 &1817023487
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2583,7 +2483,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2709,7 +2609,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1913856518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.64, y: 7.265835, z: -0.2800002}
+  m_LocalPosition: {x: 1.64, y: 7.265835, z: -0.505}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -2725,7 +2625,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9264706, g: 0.840213, b: 0.54, a: 1}
-  m_Intensity: 1.92
+  m_Intensity: 1.08
   m_Range: 6
   m_SpotAngle: 30
   m_CookieSize: 10
