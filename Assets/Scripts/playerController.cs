@@ -15,6 +15,9 @@ public class playerController : MonoBehaviour {
 
 	private bool isOnGround = false;
 
+	//gadget bools
+	public bool speedBooster = false;
+
 	// Use this for initialization
 	void Start () {
 		moveSpeed = defaultMoveSpeed;
@@ -48,15 +51,28 @@ public class playerController : MonoBehaviour {
 			transform.Rotate (0, rotationSpeed, 0);
 		}
 
-		/*
-		//slowing down if shift is pressed
-		if (Input.GetKey (KeyCode.LeftShift)) {
-			moveSpeed = defaultMoveSpeed*3;
+		if (speedBooster == true) {
+			if (Input.GetKeyDown (KeyCode.LeftShift)) {
+				moveSpeed = defaultMoveSpeed * 20;
+				StartCoroutine ("backToNormal");
+			}
 		}
-		//setting speed back to normal
-		if (Input.GetKeyUp (KeyCode.LeftShift)) {
-			moveSpeed = defaultMoveSpeed;
-		}*/
+
+		if (Input.GetButtonDown ("Fire1")) {
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit hit;
+			int layer_mask = LayerMask.GetMask ("Avoid");
+			if (Physics.Raycast (ray, out hit, 50f, layer_mask)) {
+				Debug.Log ("hit");
+				transform.LookAt (hit.transform.position);
+				RaycastHit hit2;
+				if (Physics.Raycast (transform.position, transform.position - hit.transform.position, out hit2, 25f)) {
+					Debug.Log ("witin distance");
+					//transform.position = hit2.transform.position;
+				}
+			}
+		}
+
 
 
 		if (Input.GetKeyDown (KeyCode.Space) && isOnGround == true) { //jumping
@@ -65,10 +81,18 @@ public class playerController : MonoBehaviour {
 		}
 	}
 
+	IEnumerator backToNormal(){
+		yield return new WaitForSeconds (.4f);
+		moveSpeed = defaultMoveSpeed;
+	}
+
 	void OnCollisionEnter (Collision col) {
 		if (col.gameObject.tag == "ground") {//hitting the ground again and reseting jump bool
 			isOnGround = true;
 			moveSpeed = defaultMoveSpeed;
+		}
+		if (col.gameObject.tag == "Enemy") {//hitting an enemy
+			Time.timeScale = 0;
 		}
 	}
 	/*/ TESTING MAGNITUDE/VELOCITY VALUES

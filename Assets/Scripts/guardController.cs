@@ -4,6 +4,7 @@ using System.Collections;
 public class guardController : MonoBehaviour {
 
 	public float velocityMax;
+	private float velocityInit;
 
 	//Wandering Values
 	public float xMax;
@@ -33,11 +34,12 @@ public class guardController : MonoBehaviour {
 
 
 	public GameObject player;
-	private bool foundPlayer = false;
+	public bool foundPlayer = false;
 
 	// Use this for initialization
 	void Start () {
 		velocityMax = velocityMax / 100;
+		velocityInit = velocityMax;
 
 		if (isWandering == true) {
 			x = Random.Range (xMin, xMax);
@@ -100,14 +102,9 @@ public class guardController : MonoBehaviour {
 				transform.position += transform.forward * Time.deltaTime * velocityMax;
 			}
 		}
-
-		RaycastHit hit;//Trying to detect player
-		if (Physics.Raycast (transform.position, transform.forward, out hit, 4.0f)) {
-			if (hit.collider.tag == "Player") {
-				lookLoc = player.transform.position;
-				velocityMax = 5;
-				foundPlayer = true;
-			}
+		if (foundPlayer == true) {
+			lookLoc = player.transform.position;
+			velocityMax = 5;
 		}
 	}
 
@@ -118,10 +115,10 @@ public class guardController : MonoBehaviour {
 			lookLoc = new Vector3 (xMax, -0.563f, zMax);
 		}
 	}
-
+	/*
 	void OnCollisionEnter (Collision col) {
 		if (col.gameObject.tag == "Player") {//killing an enemy minion
 			Time.timeScale = 0;
 		}
-	}
+	}*/
 }
