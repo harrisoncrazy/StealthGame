@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour {
 
 	private float maxSpeed = 2.5f;
 
+
 	public float rotationSpeed;
 
 	private float jumpSpeed;
@@ -46,90 +47,96 @@ public class playerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		line.SetPosition (0, transform.position);
-		if (isAiming == true) {
-			line.SetPosition (1, transform.forward * 10 + transform.position);
+		if (Time.timeScale == 0) {
+			if (isHooked != true) {
+				line.enabled = false;
+			}
 		}
-		if (playerRB.velocity.magnitude < maxSpeed) { //restricting player speed
-			if (Input.GetKey ("w")) { //Forward
-				playerRB.AddForce (transform.forward * moveSpeed);
+		if (Time.timeScale != 0) {//disabling input if time is frozen
+			line.SetPosition (0, transform.position);
+			if (isAiming == true) {
+				line.SetPosition (1, transform.forward * 10 + transform.position);
 			}
-			if (Input.GetKey ("s")) { //Back
-				playerRB.AddForce (-transform.forward * moveSpeed);
-			}
-			/* OLD A AND D MOVEMENT STRAFING
+			if (playerRB.velocity.magnitude < maxSpeed) { //restricting player speed
+				if (Input.GetKey ("w")) { //Forward
+					playerRB.AddForce (transform.forward * moveSpeed);
+				}
+				if (Input.GetKey ("s")) { //Back
+					playerRB.AddForce (-transform.forward * moveSpeed);
+				}
+				/* OLD A AND D MOVEMENT STRAFING
 			if (Input.GetKey ("a")) { //left
 				playerRB.AddForce (-transform.right * moveSpeed);
 			}
 			if (Input.GetKey ("d")) { //right
 				playerRB.AddForce (transform.right * moveSpeed);
 			}*/
-		}
-		if (Input.GetKey ("a")) { //rotating left
-			transform.Rotate(0, -rotationSpeed, 0);
-		}
-		if (Input.GetKey ("d")) {//rotating right
-			transform.Rotate (0, rotationSpeed, 0);
-		}
-
-		if (speedBooster == true) {
-			if (Input.GetKeyDown (KeyCode.LeftShift)) {//small speed boost when shift pressed
-				moveSpeed = defaultMoveSpeed * 20;
-				StartCoroutine ("backToNormal");
 			}
-		}
-
-		if (Input.GetKeyDown("v")) {//Grappling hook
-			if (isAiming == false) {//toggling aiming on
-				line.SetWidth (0.1f, 0.1f);
-				line.SetColors (Color.red, Color.red);
-				line.enabled = true;
-				isAiming = true;
+			if (Input.GetKey ("a")) { //rotating left
+				transform.Rotate (0, -rotationSpeed, 0);
 			}
-			else if (isAiming == true) {//firing the hook
-				if (hasFired == false) {
-					RaycastHit hit;
-					int layer_mask = LayerMask.GetMask ("Avoid");
-					if (Physics.Raycast (transform.position, transform.forward, out hit, 10f, layer_mask)) {
-						hookLocation = hit.point;
-						isHooked = true;//begging reel
-						hasFired = true;
+			if (Input.GetKey ("d")) {//rotating right
+				transform.Rotate (0, rotationSpeed, 0);
+			}
+
+			if (speedBooster == true) {
+				if (Input.GetKeyDown (KeyCode.LeftShift)) {//small speed boost when shift pressed
+					moveSpeed = defaultMoveSpeed * 20;
+					StartCoroutine ("backToNormal");
+				}
+			}
+
+			if (Input.GetKeyDown ("v")) {//Grappling hook
+				if (isAiming == false) {//toggling aiming on
+					line.SetWidth (0.1f, 0.1f);
+					line.SetColors (Color.red, Color.red);
+					line.enabled = true;
+					isAiming = true;
+				} else if (isAiming == true) {//firing the hook
+					if (hasFired == false) {
+						RaycastHit hit;
+						int layer_mask = LayerMask.GetMask ("Avoid");
+						if (Physics.Raycast (transform.position, transform.forward, out hit, 10f, layer_mask)) {
+							hookLocation = hit.point;
+							isHooked = true;//begging reel
+							hasFired = true;
+						}
 					}
 				}
 			}
-		}
 
-		if (Input.GetKeyDown ("c")) {
-			GameObject smoker = GameObject.Instantiate (smoke, transform.position, Quaternion.Euler(90, 0, 0)) as GameObject;
-		}
-
-		if (Input.GetMouseButtonDown(0)) {
-			if (firedTazer == false) {
-				GameObject shot = GameObject.Instantiate (tazerBolt, transform.position, transform.rotation) as GameObject;
-				firedTazer = true;
+			if (Input.GetKeyDown ("c")) {
+				GameObject smoker = GameObject.Instantiate (smoke, transform.position, Quaternion.Euler (90, 0, 0)) as GameObject;
 			}
-		}
 
-		if (isHooked == true) { //reeling in to hook location
-			line.SetPosition (1, hookLocation);
-			line.SetWidth (0.25f, 0.25f);
-			line.SetColors (Color.white, Color.white);
-			line.enabled = true;
-			isAiming = false;
-			hasFired = false;
-
-			transform.LookAt (hookLocation);
-			transform.position += transform.forward * Time.deltaTime * 10.0f;
-			if (Mathf.Round (transform.localPosition.x) == Mathf.Round (hookLocation.x) && Mathf.Round (transform.localPosition.z) == Mathf.Round (hookLocation.z)) {//stopping when reaching hooked location
-				isHooked = false;
-				line.enabled = false;
-				transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
+			if (Input.GetMouseButtonDown (0)) {
+				if (firedTazer == false) {
+					GameObject shot = GameObject.Instantiate (tazerBolt, transform.position, transform.rotation) as GameObject;
+					firedTazer = true;
+				}
 			}
-		}
+
+			if (isHooked == true) { //reeling in to hook location
+				line.SetPosition (1, hookLocation);
+				line.SetWidth (0.25f, 0.25f);
+				line.SetColors (Color.white, Color.white);
+				line.enabled = true;
+				isAiming = false;
+				hasFired = false;
+
+				transform.LookAt (hookLocation);
+				transform.position += transform.forward * Time.deltaTime * 10.0f;
+				if (Mathf.Round (transform.localPosition.x) == Mathf.Round (hookLocation.x) && Mathf.Round (transform.localPosition.z) == Mathf.Round (hookLocation.z)) {//stopping when reaching hooked location
+					isHooked = false;
+					line.enabled = false;
+					transform.rotation = Quaternion.Euler (0, transform.rotation.y, 0);
+				}
+			}
 			
-		if (Input.GetKeyDown (KeyCode.Space) && isOnGround == true) { //jumping
-			playerRB.AddForce(transform.up * jumpSpeed);
-			isOnGround = false;
+			if (Input.GetKeyDown (KeyCode.Space) && isOnGround == true) { //jumping
+				playerRB.AddForce (transform.up * jumpSpeed);
+				isOnGround = false;
+			}
 		}
 	}
 
@@ -144,7 +151,9 @@ public class playerController : MonoBehaviour {
 			moveSpeed = defaultMoveSpeed;
 		}
 		if (col.gameObject.tag == "Enemy") {//hitting an enemy
-			Time.timeScale = 0;
+			if (col.gameObject.GetComponent<guardController> ().isDead != true) {
+				Time.timeScale = 0;
+			}
 		}
 		if (col.gameObject.tag == "Smoke") {//standing in smoke
 			isInSmoke = true;
@@ -167,3 +176,4 @@ public class playerController : MonoBehaviour {
 		GUI.Label (new Rect (20, 20, 200, 200), "rigidbody velocity: " + playerRB.velocity.magnitude);
 	}*/
 }
+

@@ -18,10 +18,12 @@ public class guardCollision : MonoBehaviour {
 
 	void OnTriggerEnter (Collider coll) {
 		if (player.GetComponent<playerController>().isInSmoke == false) {
-			if (coll.gameObject.tag == "Player") {//killing an enemy minion
-				transform.parent.GetComponent<guardController> ().foundPlayer = true;
-				transform.parent.GetComponent<guardController> ().velocityMax = 5;
-				Time.timeScale = .5f;
+			if (transform.parent.GetComponent<guardController> ().isDead != true) {
+				if (coll.gameObject.tag == "Player") {//killing an enemy minion
+					transform.parent.GetComponent<guardController> ().foundPlayer = true;
+					transform.parent.GetComponent<guardController> ().velocityMax = 5;
+					Time.timeScale = .5f;
+				}
 			}
 		}
 	}
@@ -29,6 +31,7 @@ public class guardCollision : MonoBehaviour {
 		if (coll.gameObject.tag == "Player") {//killing an enemy minion
 			transform.parent.GetComponent<guardController>().foundPlayer = false;
 			transform.parent.GetComponent<guardController>().velocityMax = velocityInit;
+			Time.timeScale = 1f;
 		}
 	}
 }

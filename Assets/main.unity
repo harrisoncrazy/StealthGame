@@ -1414,26 +1414,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013644469532, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: isScanning
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013644469532, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: isPointToPoint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013644469532, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: Angle
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013644469532, guid: d2a43f9493f79c54aa2ca3066c1aebbb,
-        type: 2}
-      propertyPath: Period
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2a43f9493f79c54aa2ca3066c1aebbb, type: 2}
   m_IsPrefabParent: 0

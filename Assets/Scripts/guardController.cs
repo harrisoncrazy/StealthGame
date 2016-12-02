@@ -3,6 +3,8 @@ using System.Collections;
 
 public class guardController : MonoBehaviour {
 
+	public bool isDead = false;
+
 	public float velocityMax;
 	private float velocityInit;
 
@@ -32,12 +34,30 @@ public class guardController : MonoBehaviour {
 	public bool isPointToPoint = false;
 	public bool isScanning = false;
 
+	//Light values
+	public Light mainLight;
+	public Light frontRed;
+	public Light backRed;
+	public Light leftRed;
+	public Light rightRed;
+	private float timerPhaseOne = 1.0f;
+	private bool timerPhaseOneDone = false;
+	private float timerPhaseTwo = 0.5f;
+	private bool timerPhaseTwoDone = false;
+	private int lightFlashNum;
+
+	public float minIntensity = 0.01f;
+	public float maxIntensity = 1.0f;
+
+	float random;
 
 	public GameObject player;
 	public bool foundPlayer = false;
 
 	// Use this for initialization
 	void Start () {
+		random = Random.Range (0.0f, 65545.0f);
+
 		velocityMax = velocityMax / 100;
 		velocityInit = velocityMax;
 
@@ -59,52 +79,89 @@ public class guardController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (isWandering == true) { //Wanders based on random point generated from zmax/min and xmax/min
-			if (foundPlayer == false) {
-				if (Mathf.Round (transform.localPosition.x) == Mathf.Round (x) && Mathf.Round (transform.localPosition.z) == Mathf.Round (z) && foundPlayer != true) {
-					x = Random.Range (xMin, xMax);
-					z = Random.Range (zMin, zMax);
-					lookLoc = new Vector3 (x, -0.563f, z);
-					transform.LookAt (lookLoc);
-				}
-			}
-			transform.LookAt (lookLoc);
-			transform.position += transform.forward * Time.deltaTime * velocityMax;
-		}
-
-		if (isPointToPoint == true) { //wanders from point a to b and back generated from zmax/min and xmax/min using the min value for the start and max for the end
-			if (foundPlayer == false) {
-				if (isAtEndPoint == false) {
-					if (Mathf.Round (transform.localPosition.x) == Mathf.Round (lookLoc.x) && Mathf.Round (transform.localPosition.z) == Mathf.Round (lookLoc.z)) {
-						isAtEndPoint = true;
-						generatePoint ();
+		if (isDead == false) {//disabling if dead
+			mainLight.enabled = true;
+			frontRed.enabled = true;
+			backRed.enabled = true;
+			leftRed.enabled = true;
+			rightRed.enabled = true;
+			if (isWandering == true) { //Wanders based on random point generated from zmax/min and xmax/min
+				if (foundPlayer == false) {
+					if (Mathf.Round (transform.localPosition.x) == Mathf.Round (x) && Mathf.Round (transform.localPosition.z) == Mathf.Round (z) && foundPlayer != true) {
+						x = Random.Range (xMin, xMax);
+						z = Random.Range (zMin, zMax);
+						lookLoc = new Vector3 (x, -0.563f, z);
+						transform.LookAt (lookLoc);
 					}
 				}
-				if (isAtEndPoint == true) {
-					if (Mathf.Round (transform.localPosition.x) == Mathf.Round (lookLoc.x) && Mathf.Round (transform.localPosition.z) == Mathf.Round (lookLoc.z)) {
-						isAtEndPoint = false;
-						generatePoint ();
-					}
-				}
-			}
-			transform.LookAt (lookLoc);
-			transform.position += transform.forward * Time.deltaTime * velocityMax;
-			
-		}
-
-		if (isScanning == true) {
-			if (foundPlayer == false) {
-				Timer = Timer + Time.deltaTime;
-				float phase = Mathf.Sin (Timer / Period) + originalAngle;
-				transform.rotation = Quaternion.Euler (new Vector3 (0, phase * Angle, 0));
-			}else if (foundPlayer == true) {
 				transform.LookAt (lookLoc);
 				transform.position += transform.forward * Time.deltaTime * velocityMax;
 			}
-		}
-		if (foundPlayer == true) {
-			lookLoc = player.transform.position;
-			velocityMax = 5;
+
+			if (isPointToPoint == true) { //wanders from point a to b and back generated from zmax/min and xmax/min using the min value for the start and max for the end
+				if (foundPlayer == false) {
+					if (isAtEndPoint == false) {
+						if (Mathf.Round (transform.localPosition.x) == Mathf.Round (lookLoc.x) && Mathf.Round (transform.localPosition.z) == Mathf.Round (lookLoc.z)) {
+							isAtEndPoint = true;
+							generatePoint ();
+						}
+					}
+					if (isAtEndPoint == true) {
+						if (Mathf.Round (transform.localPosition.x) == Mathf.Round (lookLoc.x) && Mathf.Round (transform.localPosition.z) == Mathf.Round (lookLoc.z)) {
+							isAtEndPoint = false;
+							generatePoint ();
+						}
+					}
+				}
+				transform.LookAt (lookLoc);
+				transform.position += transform.forward * Time.deltaTime * velocityMax;
+			
+			}
+
+			if (isScanning == true) {
+				if (foundPlayer == false) {
+					Timer = Timer + Time.deltaTime;
+					float phase = Mathf.Sin (Timer / Period) + originalAngle;
+					transform.rotation = Quaternion.Euler (new Vector3 (0, phase * Angle, 0));
+				} else if (foundPlayer == true) {
+					transform.LookAt (lookLoc);
+					transform.position += transform.forward * Time.deltaTime * velocityMax;
+				}
+			}
+			if (foundPlayer == true) {
+				lookLoc = player.transform.position;
+				velocityMax = 5;
+			}
+		} else if (isDead == true) {
+			this.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+			mainLight.enabled = false;
+			frontRed.enabled = false;
+			backRed.enabled = false;
+			leftRed.enabled = false;
+			rightRed.enabled = false;
+
+			timerPhaseOne -= Time.deltaTime;
+			if (timerPhaseOne <= 0) {
+				frontRed.enabled = true;
+				backRed.enabled = true;
+				leftRed.enabled = true;
+				rightRed.enabled = true;
+				timerPhaseTwo -= Time.deltaTime;
+				if (timerPhaseTwo <= 0) {
+					frontRed.enabled = false;
+					backRed.enabled = false;
+					leftRed.enabled = false;
+					rightRed.enabled = false;
+					timerPhaseTwo = Random.Range (0.1f, 1.0f);
+					timerPhaseOne = Random.Range (0.1f, 1.0f);
+				}
+			}
+
+			float noise = Mathf.PerlinNoise (random, Time.time);
+			frontRed.intensity = Mathf.Lerp (minIntensity, maxIntensity, noise);
+			backRed.intensity = Mathf.Lerp (minIntensity, maxIntensity, noise);
+			leftRed.intensity = Mathf.Lerp (minIntensity, maxIntensity, noise);
+			rightRed.intensity = Mathf.Lerp (minIntensity, maxIntensity, noise);
 		}
 	}
 
@@ -117,7 +174,7 @@ public class guardController : MonoBehaviour {
 	}
 	/*
 	void OnCollisionEnter (Collision col) {
-		if (col.gameObject.tag == "Player") {//killing an enemy minion
+		if (col.gameObject.tag == "Player") {
 			Time.timeScale = 0;
 		}
 	}*/

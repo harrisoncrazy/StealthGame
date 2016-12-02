@@ -41,7 +41,7 @@ GameObject:
   - 4: {fileID: 4000014161522694}
   - 108: {fileID: 108000011843555872}
   m_Layer: 0
-  m_Name: Point light (2)
+  m_Name: rightRedLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ GameObject:
   - 4: {fileID: 4000010935143802}
   - 108: {fileID: 108000012678930076}
   m_Layer: 0
-  m_Name: Directional light
+  m_Name: mainLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ GameObject:
   - 4: {fileID: 4000012421675698}
   - 108: {fileID: 108000011635129930}
   m_Layer: 0
-  m_Name: Point light
+  m_Name: backRedLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,7 @@ GameObject:
   - 4: {fileID: 4000011138601924}
   - 108: {fileID: 108000013301866872}
   m_Layer: 0
-  m_Name: Point light (3)
+  m_Name: leftRedLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ GameObject:
   - 4: {fileID: 4000010794174036}
   - 108: {fileID: 108000010767564572}
   m_Layer: 0
-  m_Name: Point light (1)
+  m_Name: frontRedLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000014283610642}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &4000010935143802
 Transform:
   m_ObjectHideFlags: 1
@@ -155,7 +155,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 20.554, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000014283610642}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &4000011138601924
 Transform:
   m_ObjectHideFlags: 1
@@ -168,7 +168,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000014283610642}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &4000012421675698
 Transform:
   m_ObjectHideFlags: 1
@@ -181,7 +181,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000014283610642}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!4 &4000012554808412
 Transform:
   m_ObjectHideFlags: 1
@@ -207,7 +207,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000014283610642}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!4 &4000014283610642
 Transform:
   m_ObjectHideFlags: 1
@@ -215,15 +215,15 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011116436838}
   m_LocalRotation: {x: 0, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.33, y: -0.56, z: 5.03}
+  m_LocalPosition: {x: -1.18, y: -0.8132652, z: 7.98}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4000012421675698}
   - {fileID: 4000010935143802}
   - {fileID: 4000010794174036}
-  - {fileID: 4000014161522694}
+  - {fileID: 4000012421675698}
   - {fileID: 4000011138601924}
+  - {fileID: 4000014161522694}
   - {fileID: 4000012554808412}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -532,17 +532,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea134d6d75fee847ab02aac61ad5ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
   velocityMax: 100
   xMax: -6.28
   zMax: 18
   xMin: -6.28
   zMin: 5.35
   lookLoc: {x: 0, y: 0, z: 0}
-  Angle: 0
+  Angle: 45
   originalAngle: 0
-  Period: 0
+  Period: 1
   isWandering: 0
-  isPointToPoint: 1
-  isScanning: 0
+  isPointToPoint: 0
+  isScanning: 1
+  mainLight: {fileID: 108000012678930076}
+  frontRed: {fileID: 108000010767564572}
+  backRed: {fileID: 108000011635129930}
+  leftRed: {fileID: 108000013301866872}
+  rightRed: {fileID: 108000011843555872}
+  minIntensity: 0.25
+  maxIntensity: 0.5
   player: {fileID: 0}
   foundPlayer: 0
