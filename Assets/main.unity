@@ -1224,6 +1224,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012250414004, guid: 6293d0fd55185394c8793e2629927f8d,
+        type: 2}
+      propertyPath: tazerBolt
+      value: 
+      objectReference: {fileID: 1000012830227156, guid: 5db26f67e6f11d241a98d6386c1124bd,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6293d0fd55185394c8793e2629927f8d, type: 2}
   m_IsPrefabParent: 0
