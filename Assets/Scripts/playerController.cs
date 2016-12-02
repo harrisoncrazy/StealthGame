@@ -15,20 +15,37 @@ public class playerController : MonoBehaviour {
 
 	private bool isOnGround = false;
 
-	//gadget bools
 	public bool speedBooster = false;
+
+	//Hookshot variables
+	private bool isHooked = false;
+	public Vector3 hookLocation;
+	LineRenderer line;
+	private bool isAiming = false;
+	private bool hasFired = false;
+
+	//Smoke Bomb variables
+	public bool isInSmoke = false;
+	public GameObject smoke;
 
 	// Use this for initialization
 	void Start () {
 		moveSpeed = defaultMoveSpeed;
 		jumpSpeed = 200;
 		playerRB = GetComponent<Rigidbody> ();
+
+		line = gameObject.GetComponent<LineRenderer> ();
+		line.SetVertexCount (2);
+		line.SetWidth (0.25f, 0.25f);
+		line.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		//transform.localEulerAngles = new Vector3 (transform.localEulerAngles.x, Camera.main.transform.localEulerAngles.y, transform.localEulerAngles.z);
-
+		line.SetPosition (0, transform.position);
+		if (isAiming == true) {
+			line.SetPosition (1, transform.forward * 10 + transform.position);
+		}
 		if (playerRB.velocity.magnitude < maxSpeed) { //restricting player speed
 			if (Input.GetKey ("w")) { //Forward
 				playerRB.AddForce (transform.forward * moveSpeed);
@@ -52,29 +69,53 @@ public class playerController : MonoBehaviour {
 		}
 
 		if (speedBooster == true) {
-			if (Input.GetKeyDown (KeyCode.LeftShift)) {
+			if (Input.GetKeyDown (KeyCode.LeftShift)) {//small speed boost when shift pressed
 				moveSpeed = defaultMoveSpeed * 20;
 				StartCoroutine ("backToNormal");
 			}
 		}
 
-		if (Input.GetButtonDown ("Fire1")) {
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			RaycastHit hit;
-			int layer_mask = LayerMask.GetMask ("Avoid");
-			if (Physics.Raycast (ray, out hit, 50f, layer_mask)) {
-				Debug.Log ("hit");
-				transform.LookAt (hit.transform.position);
-				RaycastHit hit2;
-				if (Physics.Raycast (transform.position, transform.position - hit.transform.position, out hit2, 25f)) {
-					Debug.Log ("witin distance");
-					//transform.position = hit2.transform.position;
+		if (Input.GetKeyDown("v")) {//Grappling hook
+			if (isAiming == false) {//toggling aiming on
+				line.SetWidth (0.1f, 0.1f);
+				line.SetColors (Color.red, Color.red);
+				line.enabled = true;
+				isAiming = true;
+			}
+			else if (isAiming == true) {//firing the hook
+				if (hasFired == false) {
+					RaycastHit hit;
+					int layer_mask = LayerMask.GetMask ("Avoid");
+					if (Physics.Raycast (transform.position, transform.forward, out hit, 10f, layer_mask)) {
+						hookLocation = hit.point;
+						isHooked = true;//begging reel
+						hasFired = true;
+					}
 				}
 			}
 		}
 
+		if (Input.GetKeyDown ("c")) {
+			GameObject shot = GameObject.Instantiate (smoke, transform.position, Quaternion.Euler(90, 0, 0)) as GameObject;
+		}
 
+		if (isHooked == true) { //reeling in to hook location
+			line.SetPosition (1, hookLocation);
+			line.SetWidth (0.25f, 0.25f);
+			line.SetColors (Color.white, Color.white);
+			line.enabled = true;
+			isAiming = false;
+			hasFired = false;
 
+			transform.LookAt (hookLocation);
+			transform.position += transform.forward * Time.deltaTime * 10.0f;
+			if (Mathf.Round (transform.localPosition.x) == Mathf.Round (hookLocation.x) && Mathf.Round (transform.localPosition.z) == Mathf.Round (hookLocation.z)) {//stopping when reaching hooked location
+				isHooked = false;
+				line.enabled = false;
+				transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
+			}
+		}
+			
 		if (Input.GetKeyDown (KeyCode.Space) && isOnGround == true) { //jumping
 			playerRB.AddForce(transform.up * jumpSpeed);
 			isOnGround = false;
@@ -93,6 +134,21 @@ public class playerController : MonoBehaviour {
 		}
 		if (col.gameObject.tag == "Enemy") {//hitting an enemy
 			Time.timeScale = 0;
+		}
+		if (col.gameObject.tag == "Smoke") {//standing in smoke
+			isInSmoke = true;
+		}
+	}
+
+	void OnTriggerEnter (Collider col) {
+		if (col.gameObject.tag == "Smoke") {//standing in smoke
+			isInSmoke = true;
+		}
+	}
+
+	void OnTriggerExit (Collider col) {
+		if (col.gameObject.tag == "Smoke") {//standing in smoke
+			isInSmoke = false;
 		}
 	}
 	/*/ TESTING MAGNITUDE/VELOCITY VALUES

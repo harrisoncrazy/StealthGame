@@ -4,6 +4,7 @@ using System.Collections;
 public class guardCollision : MonoBehaviour {
 
 	private float velocityInit;
+	private GameObject player;
 
 	// Use this for initialization
 	void Start () {
@@ -12,14 +13,16 @@ public class guardCollision : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		player = GameObject.Find ("Player");
 	}
 
 	void OnTriggerEnter (Collider coll) {
-		if (coll.gameObject.tag == "Player") {//killing an enemy minion
-			transform.parent.GetComponent<guardController>().foundPlayer = true;
-			transform.parent.GetComponent<guardController>().velocityMax = 5;
-			Time.timeScale = .5f;
+		if (player.GetComponent<playerController>().isInSmoke == false) {
+			if (coll.gameObject.tag == "Player") {//killing an enemy minion
+				transform.parent.GetComponent<guardController> ().foundPlayer = true;
+				transform.parent.GetComponent<guardController> ().velocityMax = 5;
+				Time.timeScale = .5f;
+			}
 		}
 	}
 	void OnTriggerExit (Collider coll) {
