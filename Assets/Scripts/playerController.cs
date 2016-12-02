@@ -28,6 +28,10 @@ public class playerController : MonoBehaviour {
 	public bool isInSmoke = false;
 	public GameObject smoke;
 
+	//Tazer variables
+	public bool firedTazer = false;
+	public GameObject tazerBolt;
+
 	// Use this for initialization
 	void Start () {
 		moveSpeed = defaultMoveSpeed;
@@ -41,7 +45,7 @@ public class playerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		line.SetPosition (0, transform.position);
 		if (isAiming == true) {
 			line.SetPosition (1, transform.forward * 10 + transform.position);
@@ -96,7 +100,14 @@ public class playerController : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown ("c")) {
-			GameObject shot = GameObject.Instantiate (smoke, transform.position, Quaternion.Euler(90, 0, 0)) as GameObject;
+			GameObject smoker = GameObject.Instantiate (smoke, transform.position, Quaternion.Euler(90, 0, 0)) as GameObject;
+		}
+
+		if (Input.GetMouseButtonDown(0)) {
+			if (firedTazer == false) {
+				GameObject shot = GameObject.Instantiate (tazerBolt, transform.position, transform.rotation) as GameObject;
+				firedTazer = true;
+			}
 		}
 
 		if (isHooked == true) { //reeling in to hook location
