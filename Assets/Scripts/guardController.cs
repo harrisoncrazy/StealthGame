@@ -46,8 +46,8 @@ public class guardController : MonoBehaviour {
 	private bool timerPhaseTwoDone = false;
 	private int lightFlashNum;
 
-	public float minIntensity = 0.01f;
-	public float maxIntensity = 1.0f;
+	private float minIntensity = 0.01f;
+	private float maxIntensity = 1.0f;
 
 	float random;
 
@@ -85,6 +85,11 @@ public class guardController : MonoBehaviour {
 			backRed.enabled = true;
 			leftRed.enabled = true;
 			rightRed.enabled = true;
+			frontRed.intensity = 1.0f;
+			backRed.intensity = 1.0f;
+			leftRed.intensity = 1.0f;
+			rightRed.intensity = 1.0f;
+
 			if (isWandering == true) { //Wanders based on random point generated from zmax/min and xmax/min
 				if (foundPlayer == false) {
 					if (Mathf.Round (transform.localPosition.x) == Mathf.Round (x) && Mathf.Round (transform.localPosition.z) == Mathf.Round (z) && foundPlayer != true) {
@@ -152,7 +157,7 @@ public class guardController : MonoBehaviour {
 					backRed.enabled = false;
 					leftRed.enabled = false;
 					rightRed.enabled = false;
-					timerPhaseTwo = Random.Range (0.1f, 1.0f);
+					timerPhaseTwo = Random.Range (0.1f, 2.0f);
 					timerPhaseOne = Random.Range (0.1f, 1.0f);
 				}
 			}

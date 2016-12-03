@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Fire
   - Smoke
+  - Cone
   layers:
   - Default
   - TransparentFX

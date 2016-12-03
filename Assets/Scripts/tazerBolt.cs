@@ -23,18 +23,22 @@ public class tazerBolt : MonoBehaviour {
 
 	void OnTriggerEnter (Collider coll) {
 		if (coll.gameObject.tag != "Player") {
-			if (coll.gameObject.tag == "Enemy") {
-				coll.gameObject.GetComponent<guardController> ().isDead = true;
+			if (coll.gameObject.tag != "Cone") {
+				if (coll.gameObject.tag == "Enemy") {
+					coll.gameObject.GetComponent<guardController> ().isDead = true;
+				}
+				GameObject.Find ("Player").GetComponent<playerController> ().firedTazer = false;
+				Destroy (this.gameObject);
 			}
-			GameObject.Find ("Player").GetComponent<playerController> ().firedTazer = false;
-			Destroy (this.gameObject);
 		}
 	}
 
 	void OnCollisionEnter (Collision coll) {
 		if (coll.gameObject.tag != "Player") {
-			GameObject.Find ("Player").GetComponent<playerController> ().firedTazer = false;
-			Destroy (this.gameObject);
+			if (coll.gameObject.tag != "Cone") {
+				GameObject.Find ("Player").GetComponent<playerController> ().firedTazer = false;
+				Destroy (this.gameObject);
+			}
 		}
 	}
 }

@@ -446,6 +446,8 @@ MonoBehaviour:
   hookLocation: {x: 0, y: 0, z: 0}
   isInSmoke: 0
   smoke: {fileID: 1000011956685712, guid: 4f37ffdf9cc8ea647a09a404d5cb8530, type: 2}
+  firedTazer: 0
+  tazerBolt: {fileID: 1000012830227156, guid: 5db26f67e6f11d241a98d6386c1124bd, type: 2}
 --- !u!120 &120000014006416404
 LineRenderer:
   m_ObjectHideFlags: 1
