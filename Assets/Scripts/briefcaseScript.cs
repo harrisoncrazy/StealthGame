@@ -19,4 +19,11 @@ public class briefcaseScript : MonoBehaviour {
 			originalY + ((float)Mathf.Sin(Time.time * 5) * floatStrength),
 			transform.position.z);
 	}
+
+	void OnTriggerEnter (Collider coll) {
+		if (coll.gameObject.tag == "Player") {
+			GameManager.Instance.briefcasesCollected++;
+			Destroy (this.gameObject);
+		}
+	}
 }

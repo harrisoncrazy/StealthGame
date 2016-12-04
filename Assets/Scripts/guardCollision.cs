@@ -29,7 +29,7 @@ public class guardCollision : MonoBehaviour {
 	}
 
 	void OnTriggerExit (Collider coll) {
-		if (coll.gameObject.tag == "Player") {//killing an enemy minion
+		if (coll.gameObject.tag == "Player") {
 			transform.parent.GetComponent<guardController>().foundPlayer = false;
 			transform.parent.GetComponent<guardController>().velocityMax = velocityInit;
 			Time.timeScale = 1f;

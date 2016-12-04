@@ -16,7 +16,11 @@ public class playerController : MonoBehaviour {
 
 	private bool isOnGround = false;
 
-	public bool speedBooster = false;
+	//Gadget Bools
+	public bool boostEnabled = false;
+	public bool hookEnabled = false;
+	public bool smokeEnabled = false;
+	public bool tazerEnabled = false;
 
 	//Hookshot variables
 	private bool isHooked = false;
@@ -49,7 +53,7 @@ public class playerController : MonoBehaviour {
 	void Update () {
 		if (Time.timeScale == 0) {
 			if (isHooked != true) {
-				line.enabled = false;
+				line.enabled = false;//disabling linerender when player dies
 			}
 		}
 		if (Time.timeScale != 0) {//disabling input if time is frozen
@@ -79,45 +83,36 @@ public class playerController : MonoBehaviour {
 				transform.Rotate (0, rotationSpeed, 0);
 			}
 
-			if (speedBooster == true) {
+			if (boostEnabled == true) {
 				if (Input.GetKeyDown (KeyCode.LeftShift)) {//small speed boost when shift pressed
 					moveSpeed = defaultMoveSpeed * 20;
 					StartCoroutine ("backToNormal");
 				}
 			}
 
-			if (Input.GetKeyDown ("v")) {//Grappling hook
-				if (isAiming == false) {//toggling aiming on
-					line.SetWidth (0.1f, 0.1f);
-					line.SetColors (Color.red, Color.red);
-					line.enabled = true;
-					isAiming = true;
-				} else if (isAiming == true) {//firing the hook
-					if (hasFired == false) {
-						RaycastHit hit;
-						int layer_mask = LayerMask.GetMask ("Avoid");
-						if (Physics.Raycast (transform.position, transform.forward, out hit, 10f, layer_mask)) {
-							hookLocation = hit.point;
-							isHooked = true;//begging reel
-							hasFired = true;
+			if (hookEnabled == true) {
+				if (Input.GetKeyDown ("v")) {//Grappling hook
+					if (isAiming == false) {//toggling aiming on
+						line.SetWidth (0.1f, 0.1f);
+						line.SetColors (Color.red, Color.red);
+						line.enabled = true;
+						isAiming = true;
+					} else if (isAiming == true) {//firing the hook
+						if (hasFired == false) {
+							RaycastHit hit;
+							int layer_mask = LayerMask.GetMask ("Avoid");
+							if (Physics.Raycast (transform.position, transform.forward, out hit, 10f, layer_mask)) {
+								hookLocation = hit.point;
+								isHooked = true;//begging reel
+								hasFired = true;
+							}
 						}
 					}
 				}
 			}
 
-			if (Input.GetKeyDown ("c")) {
-				GameObject smoker = GameObject.Instantiate (smoke, transform.position, Quaternion.Euler (90, 0, 0)) as GameObject;
-			}
-
-			if (Input.GetMouseButtonDown (0)) {
-				if (firedTazer == false) {
-					GameObject shot = GameObject.Instantiate (tazerBolt, transform.position, transform.rotation) as GameObject;
-					firedTazer = true;
-				}
-			}
-
 			if (isHooked == true) { //reeling in to hook location
-				line.SetPosition (1, hookLocation);
+				line.SetPosition (1, hookLocation);//enabling and setting color of the linerender hook
 				line.SetWidth (0.25f, 0.25f);
 				line.SetColors (Color.white, Color.white);
 				line.enabled = true;
@@ -132,7 +127,22 @@ public class playerController : MonoBehaviour {
 					transform.rotation = Quaternion.Euler (0, transform.rotation.y, 0);
 				}
 			}
-			
+
+			if (smokeEnabled == true) {
+				if (Input.GetKeyDown ("c")) {//throwing a smoke bomb
+					GameObject smoker = GameObject.Instantiate (smoke, transform.position, Quaternion.Euler (90, 0, 0)) as GameObject;
+				}
+			}
+
+			if (tazerEnabled == true) {
+				if (Input.GetMouseButtonDown (0)) {//firing a tazer bolt
+					if (firedTazer == false) {
+						GameObject shot = GameObject.Instantiate (tazerBolt, transform.position, transform.rotation) as GameObject;
+						firedTazer = true;
+					}
+				}
+			}
+				
 			if (Input.GetKeyDown (KeyCode.Space) && isOnGround == true) { //jumping
 				playerRB.AddForce (transform.up * jumpSpeed);
 				isOnGround = false;
@@ -140,7 +150,7 @@ public class playerController : MonoBehaviour {
 		}
 	}
 
-	IEnumerator backToNormal(){
+	IEnumerator backToNormal(){//setting move speed back to normal
 		yield return new WaitForSeconds (.4f);
 		moveSpeed = defaultMoveSpeed;
 	}
