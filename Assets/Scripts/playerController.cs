@@ -3,6 +3,8 @@ using System.Collections;
 
 public class playerController : MonoBehaviour {
 
+	public static playerController Instance;
+
 	public float moveSpeed;
 	private float defaultMoveSpeed = 20; //Default move speed for slowing down/speeding up with shift if implimented, leaving it for now
 
@@ -39,6 +41,7 @@ public class playerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Instance = this;
 		moveSpeed = defaultMoveSpeed;
 		jumpSpeed = 200;
 		playerRB = GetComponent<Rigidbody> ();

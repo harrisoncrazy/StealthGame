@@ -189,8 +189,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013032665746}
   m_LocalRotation: {x: -0, y: -0, z: -1, w: 0.00000028088027}
-  m_LocalPosition: {x: 0, y: 0, z: 3.83}
-  m_LocalScale: {x: 2.0206351, y: 3.4126334, z: 2.7733588}
+  m_LocalPosition: {x: 0, y: 0, z: 4.56}
+  m_LocalScale: {x: 2.860968, y: 3.4126334, z: 3.0711484}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -179.99998}
   m_Children: []
   m_Father: {fileID: 4000014283610642}
@@ -215,7 +215,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011116436838}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5, y: -0.8132652, z: 23.3}
+  m_LocalPosition: {x: -30.35, y: -0.3, z: 44}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -534,17 +534,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDead: 0
   velocityMax: 100
-  xMax: -6.28
-  zMax: 18
-  xMin: -6.28
-  zMin: 5.35
+  xMax: -5
+  zMax: 44
+  xMin: -30
+  zMin: 44
   lookLoc: {x: 0, y: 0, z: 0}
-  Angle: 90
-  originalAngle: 5
+  rotatingTowards: 0
+  Angle: 180
+  originalAngle: 0
   Period: 1
   isWandering: 0
   isPointToPoint: 0
-  isScanning: 1
+  isScanning: 0
   mainLight: {fileID: 108000012678930076}
   frontRed: {fileID: 108000010767564572}
   backRed: {fileID: 108000011635129930}
